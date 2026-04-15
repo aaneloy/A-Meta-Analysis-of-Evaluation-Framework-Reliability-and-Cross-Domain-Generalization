@@ -1,0 +1,201 @@
+id,domain,subset,vote_cluster_1_LRP4RAG,vote_cluster_3_QAFactEval,vote_cluster_2_FaithJudge,verdict
+hotpotqa_327,General Knowledge,hotpotqa,1,0,1,contested
+hotpotqa_57,General Knowledge,hotpotqa,1,0,1,contested
+hotpotqa_12,General Knowledge,hotpotqa,1,0,1,contested
+hotpotqa_379,General Knowledge,hotpotqa,1,0,1,contested
+hotpotqa_140,General Knowledge,hotpotqa,1,0,1,contested
+hotpotqa_125,General Knowledge,hotpotqa,1,0,1,contested
+hotpotqa_114,General Knowledge,hotpotqa,1,0,1,contested
+hotpotqa_71,General Knowledge,hotpotqa,1,0,1,contested
+hotpotqa_377,General Knowledge,hotpotqa,1,0,1,contested
+hotpotqa_52,General Knowledge,hotpotqa,1,0,1,contested
+hotpotqa_346,General Knowledge,hotpotqa,1,0,1,contested
+hotpotqa_279,General Knowledge,hotpotqa,1,0,1,contested
+hotpotqa_44,General Knowledge,hotpotqa,1,0,1,contested
+hotpotqa_302,General Knowledge,hotpotqa,1,0,1,contested
+hotpotqa_216,General Knowledge,hotpotqa,1,0,1,contested
+hotpotqa_16,General Knowledge,hotpotqa,1,0,1,contested
+hotpotqa_15,General Knowledge,hotpotqa,1,0,1,contested
+hotpotqa_47,General Knowledge,hotpotqa,1,0,1,contested
+hotpotqa_111,General Knowledge,hotpotqa,1,0,1,contested
+hotpotqa_119,General Knowledge,hotpotqa,1,0,1,contested
+hotpotqa_258,General Knowledge,hotpotqa,1,0,1,contested
+hotpotqa_308,General Knowledge,hotpotqa,1,0,1,contested
+hotpotqa_13,General Knowledge,hotpotqa,1,1,1,faithful
+msmarco_287,General Knowledge,msmarco,1,0,1,contested
+msmarco_101,General Knowledge,msmarco,1,0,1,contested
+msmarco_366,General Knowledge,msmarco,1,0,1,contested
+msmarco_332,General Knowledge,msmarco,1,0,1,contested
+msmarco_359,General Knowledge,msmarco,1,0,1,contested
+msmarco_279,General Knowledge,msmarco,1,0,1,contested
+msmarco_214,General Knowledge,msmarco,1,0,1,contested
+msmarco_112,General Knowledge,msmarco,1,0,1,contested
+msmarco_229,General Knowledge,msmarco,1,0,1,contested
+msmarco_301,General Knowledge,msmarco,1,0,1,contested
+msmarco_142,General Knowledge,msmarco,1,0,1,contested
+msmarco_414,General Knowledge,msmarco,1,0,1,contested
+msmarco_3,General Knowledge,msmarco,1,0,1,contested
+msmarco_388,General Knowledge,msmarco,1,0,1,contested
+msmarco_412,General Knowledge,msmarco,1,0,1,contested
+msmarco_81,General Knowledge,msmarco,1,0,1,contested
+msmarco_357,General Knowledge,msmarco,1,0,1,contested
+msmarco_216,General Knowledge,msmarco,1,0,1,contested
+msmarco_174,General Knowledge,msmarco,1,0,1,contested
+msmarco_79,General Knowledge,msmarco,1,1,0,contested
+msmarco_110,General Knowledge,msmarco,1,0,1,contested
+msmarco_390,General Knowledge,msmarco,1,0,1,contested
+hagrid_689,General Knowledge,hagrid,1,0,1,contested
+hagrid_209,General Knowledge,hagrid,1,0,1,contested
+hagrid_189,General Knowledge,hagrid,1,0,1,contested
+hagrid_778,General Knowledge,hagrid,1,0,1,contested
+hagrid_198,General Knowledge,hagrid,1,0,1,contested
+hagrid_735,General Knowledge,hagrid,1,0,1,contested
+hagrid_704,General Knowledge,hagrid,1,0,1,contested
+hagrid_1236,General Knowledge,hagrid,1,0,1,contested
+hagrid_541,General Knowledge,hagrid,1,0,1,contested
+hagrid_88,General Knowledge,hagrid,0,0,0,unfaithful
+hagrid_940,General Knowledge,hagrid,1,0,1,contested
+hagrid_1098,General Knowledge,hagrid,1,0,1,contested
+hagrid_255,General Knowledge,hagrid,1,0,1,contested
+hagrid_775,General Knowledge,hagrid,1,0,1,contested
+hagrid_161,General Knowledge,hagrid,1,0,1,contested
+hagrid_1130,General Knowledge,hagrid,1,0,1,contested
+hagrid_600,General Knowledge,hagrid,1,0,1,contested
+hagrid_1287,General Knowledge,hagrid,1,0,1,contested
+hagrid_1266,General Knowledge,hagrid,0,0,1,contested
+hagrid_740,General Knowledge,hagrid,0,1,1,contested
+hagrid_1182,General Knowledge,hagrid,1,0,1,contested
+hagrid_393,General Knowledge,hagrid,1,0,1,contested
+finqa_284,Finance,finqa,1,0,1,contested
+finqa_187,Finance,finqa,0,0,0,unfaithful
+finqa_933,Finance,finqa,0,0,1,contested
+finqa_1185,Finance,finqa,1,0,0,contested
+finqa_326,Finance,finqa,1,0,1,contested
+finqa_953,Finance,finqa,1,0,1,contested
+finqa_413,Finance,finqa,0,0,1,contested
+finqa_1556,Finance,finqa,1,0,1,contested
+finqa_1138,Finance,finqa,0,0,1,contested
+finqa_1857,Finance,finqa,1,0,1,contested
+finqa_1494,Finance,finqa,0,0,1,contested
+finqa_666,Finance,finqa,0,0,1,contested
+finqa_1516,Finance,finqa,0,0,1,contested
+finqa_1455,Finance,finqa,1,0,1,contested
+finqa_858,Finance,finqa,0,0,1,contested
+finqa_1093,Finance,finqa,0,1,1,contested
+finqa_292,Finance,finqa,1,1,1,faithful
+finqa_700,Finance,finqa,0,0,1,contested
+finqa_2187,Finance,finqa,0,0,1,contested
+finqa_1002,Finance,finqa,1,0,1,contested
+finqa_669,Finance,finqa,0,0,1,contested
+finqa_1893,Finance,finqa,1,0,1,contested
+finqa_1554,Finance,finqa,1,0,1,contested
+finqa_1105,Finance,finqa,0,1,1,contested
+finqa_2281,Finance,finqa,1,0,1,contested
+finqa_899,Finance,finqa,0,1,1,contested
+finqa_1328,Finance,finqa,0,0,1,contested
+finqa_229,Finance,finqa,0,0,1,contested
+finqa_938,Finance,finqa,1,0,1,contested
+finqa_131,Finance,finqa,1,1,1,faithful
+finqa_1292,Finance,finqa,1,1,1,faithful
+finqa_1643,Finance,finqa,1,0,1,contested
+finqa_1096,Finance,finqa,0,0,1,contested
+finqa_271,Finance,finqa,0,0,1,contested
+delucionqa_54,Finance,delucionqa,1,0,1,contested
+delucionqa_145,Finance,delucionqa,1,0,1,contested
+delucionqa_80,Finance,delucionqa,1,0,1,contested
+delucionqa_183,Finance,delucionqa,1,0,1,contested
+delucionqa_167,Finance,delucionqa,1,0,1,contested
+delucionqa_127,Finance,delucionqa,1,0,1,contested
+delucionqa_101,Finance,delucionqa,1,0,1,contested
+delucionqa_164,Finance,delucionqa,0,1,1,contested
+delucionqa_117,Finance,delucionqa,1,0,1,contested
+delucionqa_36,Finance,delucionqa,1,0,1,contested
+delucionqa_67,Finance,delucionqa,1,0,1,contested
+delucionqa_35,Finance,delucionqa,1,0,1,contested
+delucionqa_63,Finance,delucionqa,1,0,1,contested
+delucionqa_143,Finance,delucionqa,1,0,1,contested
+delucionqa_137,Finance,delucionqa,1,0,1,contested
+delucionqa_173,Finance,delucionqa,1,0,1,contested
+delucionqa_149,Finance,delucionqa,1,0,1,contested
+delucionqa_109,Finance,delucionqa,1,0,1,contested
+delucionqa_179,Finance,delucionqa,1,1,1,faithful
+delucionqa_102,Finance,delucionqa,1,0,1,contested
+delucionqa_92,Finance,delucionqa,0,1,1,contested
+delucionqa_56,Finance,delucionqa,1,0,0,contested
+delucionqa_172,Finance,delucionqa,0,0,1,contested
+delucionqa_130,Finance,delucionqa,1,1,1,faithful
+delucionqa_126,Finance,delucionqa,1,0,1,contested
+delucionqa_23,Finance,delucionqa,1,0,1,contested
+delucionqa_12,Finance,delucionqa,1,0,1,contested
+delucionqa_28,Finance,delucionqa,1,0,1,contested
+delucionqa_39,Finance,delucionqa,1,0,1,contested
+delucionqa_40,Finance,delucionqa,1,0,1,contested
+delucionqa_108,Finance,delucionqa,1,0,1,contested
+delucionqa_152,Finance,delucionqa,1,0,1,contested
+delucionqa_16,Finance,delucionqa,1,0,1,contested
+covidqa_98,Biomedicine,covidqa,1,0,1,contested
+covidqa_97,Biomedicine,covidqa,1,0,1,contested
+covidqa_152,Biomedicine,covidqa,1,0,1,contested
+covidqa_119,Biomedicine,covidqa,1,0,1,contested
+covidqa_135,Biomedicine,covidqa,0,0,0,unfaithful
+covidqa_64,Biomedicine,covidqa,1,0,1,contested
+covidqa_141,Biomedicine,covidqa,1,0,1,contested
+covidqa_220,Biomedicine,covidqa,1,0,1,contested
+covidqa_2,Biomedicine,covidqa,0,0,1,contested
+covidqa_174,Biomedicine,covidqa,1,0,1,contested
+covidqa_184,Biomedicine,covidqa,1,1,1,faithful
+covidqa_29,Biomedicine,covidqa,1,0,1,contested
+covidqa_236,Biomedicine,covidqa,1,0,0,contested
+covidqa_226,Biomedicine,covidqa,1,0,1,contested
+covidqa_137,Biomedicine,covidqa,1,0,1,contested
+covidqa_192,Biomedicine,covidqa,1,0,1,contested
+covidqa_68,Biomedicine,covidqa,1,0,1,contested
+covidqa_196,Biomedicine,covidqa,0,0,1,contested
+covidqa_164,Biomedicine,covidqa,1,0,1,contested
+covidqa_87,Biomedicine,covidqa,1,0,1,contested
+covidqa_28,Biomedicine,covidqa,1,0,1,contested
+covidqa_75,Biomedicine,covidqa,1,0,1,contested
+covidqa_111,Biomedicine,covidqa,1,0,1,contested
+covidqa_40,Biomedicine,covidqa,1,0,1,contested
+covidqa_116,Biomedicine,covidqa,0,1,1,contested
+covidqa_0,Biomedicine,covidqa,1,0,0,contested
+covidqa_235,Biomedicine,covidqa,1,0,1,contested
+covidqa_219,Biomedicine,covidqa,1,0,1,contested
+covidqa_67,Biomedicine,covidqa,1,0,1,contested
+covidqa_128,Biomedicine,covidqa,1,1,1,faithful
+covidqa_195,Biomedicine,covidqa,1,0,1,contested
+covidqa_45,Biomedicine,covidqa,0,0,1,contested
+covidqa_129,Biomedicine,covidqa,1,0,0,contested
+pubmedqa_435,Biomedicine,pubmedqa,1,0,1,contested
+pubmedqa_1222,Biomedicine,pubmedqa,0,1,1,contested
+pubmedqa_2079,Biomedicine,pubmedqa,0,0,1,contested
+pubmedqa_814,Biomedicine,pubmedqa,1,0,1,contested
+pubmedqa_626,Biomedicine,pubmedqa,1,0,1,contested
+pubmedqa_1531,Biomedicine,pubmedqa,0,0,1,contested
+pubmedqa_661,Biomedicine,pubmedqa,1,0,1,contested
+pubmedqa_2209,Biomedicine,pubmedqa,0,1,1,contested
+pubmedqa_2172,Biomedicine,pubmedqa,1,0,1,contested
+pubmedqa_2,Biomedicine,pubmedqa,1,1,1,faithful
+pubmedqa_1327,Biomedicine,pubmedqa,0,0,1,contested
+pubmedqa_2001,Biomedicine,pubmedqa,1,0,1,contested
+pubmedqa_79,Biomedicine,pubmedqa,1,0,1,contested
+pubmedqa_458,Biomedicine,pubmedqa,1,1,1,faithful
+pubmedqa_1486,Biomedicine,pubmedqa,1,0,1,contested
+pubmedqa_1259,Biomedicine,pubmedqa,0,0,1,contested
+pubmedqa_980,Biomedicine,pubmedqa,1,0,1,contested
+pubmedqa_237,Biomedicine,pubmedqa,1,0,1,contested
+pubmedqa_986,Biomedicine,pubmedqa,1,0,1,contested
+pubmedqa_2323,Biomedicine,pubmedqa,0,0,1,contested
+pubmedqa_322,Biomedicine,pubmedqa,1,0,0,contested
+pubmedqa_350,Biomedicine,pubmedqa,1,0,1,contested
+pubmedqa_1990,Biomedicine,pubmedqa,1,0,1,contested
+pubmedqa_283,Biomedicine,pubmedqa,1,0,1,contested
+pubmedqa_2181,Biomedicine,pubmedqa,0,0,1,contested
+pubmedqa_515,Biomedicine,pubmedqa,1,0,1,contested
+pubmedqa_525,Biomedicine,pubmedqa,1,0,1,contested
+pubmedqa_1946,Biomedicine,pubmedqa,0,0,1,contested
+pubmedqa_2251,Biomedicine,pubmedqa,1,1,1,faithful
+pubmedqa_676,Biomedicine,pubmedqa,0,0,1,contested
+pubmedqa_1085,Biomedicine,pubmedqa,1,0,1,contested
+pubmedqa_2161,Biomedicine,pubmedqa,1,1,1,faithful
+pubmedqa_1733,Biomedicine,pubmedqa,1,0,1,contested

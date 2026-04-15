@@ -1,0 +1,82 @@
+# Configuration for RAG Evaluation Meta-Analysis
+# =============================================
+
+# Dataset settings
+dataset:
+  name: "ragbench"
+  total_samples: 200
+  domains:
+    general_knowledge:
+      subsets: ["hotpotqa", "msmarco", "hagrid"]
+      samples: 67
+    finance:
+      subsets: ["finqa", "delucionqa"]
+      samples: 67
+    biomedicine:
+      subsets: ["covidqa", "pubmedqa"]
+      samples: 66
+  random_seed: 42
+
+# Evaluation frameworks to compare
+frameworks:
+  - name: "RAGAS"
+    enabled: true
+    metrics: ["faithfulness", "answer_relevancy", "context_precision", "context_recall"]
+  
+  - name: "DeepEval"
+    enabled: true
+    metrics: ["faithfulness", "answer_relevancy", "contextual_precision", "contextual_recall", "hallucination"]
+  
+  - name: "RAGChecker"
+    enabled: true
+    metrics: ["claim_recall", "context_utilization", "faithfulness", "noise_sensitivity", "hallucination"]
+  
+  - name: "TRACe"
+    enabled: true
+    metrics: ["utilization", "relevance", "adherence", "completeness"]
+  
+  - name: "ARES"
+    enabled: true
+    metrics: ["context_relevance", "answer_faithfulness", "answer_relevance"]
+  
+  - name: "G-Eval"
+    enabled: true
+    metrics: ["coherence", "consistency", "fluency", "relevance"]
+  
+  - name: "BERTScore"
+    enabled: true
+    metrics: ["precision", "recall", "f1"]
+  
+  - name: "UniEval"
+    enabled: true
+    metrics: ["coherence", "consistency", "fluency", "relevance", "overall"]
+  
+  - name: "QAFactEval"
+    enabled: true
+    metrics: ["factual_consistency"]
+
+# Analysis settings
+analysis:
+  correlation_methods: ["pearson", "spearman", "kendall"]
+  agreement_threshold: 0.5
+  significance_level: 0.05
+  bootstrap_iterations: 1000
+
+# Visualization settings
+visualization:
+  figure_format: "pdf"
+  dpi: 300
+  style: "seaborn-v0_8-whitegrid"
+  color_palette: "husl"
+  figure_sizes:
+    heatmap: [10, 8]
+    bar_chart: [12, 6]
+    scatter: [8, 8]
+    distribution: [14, 4]
+
+# Output paths
+paths:
+  data: "data/"
+  results: "results/"
+  figures: "figures/"
+  logs: "logs/"

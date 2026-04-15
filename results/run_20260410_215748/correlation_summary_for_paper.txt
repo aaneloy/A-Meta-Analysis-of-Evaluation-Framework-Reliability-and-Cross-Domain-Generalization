@@ -1,0 +1,42 @@
+======================================================================
+ACTUAL COMPUTED CORRELATIONS FOR PAPER TABLES
+======================================================================
+
+These are the actual correlations computed from evaluation_scores.csv
+Use these values when updating paper tables to ensure accuracy.
+
+--- Framework Faithfulness Correlations (Pearson) ---
+Framework 1     Framework 2     Pearson r    p-value     
+-------------------------------------------------------
+RAGAS           DeepEval        0.5605       6.1041e-18  
+RAGAS           RAGChecker      -0.0417      5.5739e-01  
+RAGAS           ARES            0.3188       4.1955e-06  
+RAGAS           FaithJudge      0.6875       2.5354e-29  
+RAGAS           KG-RAG          0.3459       5.2474e-07  
+DeepEval        RAGChecker      -0.0074      9.1772e-01  
+DeepEval        ARES            0.5348       3.4160e-16  
+DeepEval        FaithJudge      0.4969       7.2048e-14  
+DeepEval        KG-RAG          0.4492       2.5131e-11  
+RAGChecker      ARES            -0.0218      7.5883e-01  
+RAGChecker      FaithJudge      -0.0343      6.2949e-01  
+RAGChecker      KG-RAG          0.0350       6.2251e-01  
+ARES            FaithJudge      0.1101       1.2076e-01  
+ARES            KG-RAG          0.6910       1.0089e-29  
+FaithJudge      KG-RAG          0.1463       3.8785e-02  
+
+--- For LaTeX Table (copy-paste ready) ---
+RAGAS vs DeepEval & 0.56 \\
+RAGAS vs RAGChecker & -0.04 \\
+RAGAS vs ARES & 0.32 \\
+RAGAS vs FaithJudge & 0.69 \\
+RAGAS vs KG-RAG & 0.35 \\
+DeepEval vs RAGChecker & -0.01 \\
+DeepEval vs ARES & 0.53 \\
+DeepEval vs FaithJudge & 0.50 \\
+DeepEval vs KG-RAG & 0.45 \\
+RAGChecker vs ARES & -0.02 \\
+RAGChecker vs FaithJudge & -0.03 \\
+RAGChecker vs KG-RAG & 0.04 \\
+ARES vs FaithJudge & 0.11 \\
+ARES vs KG-RAG & 0.69 \\
+FaithJudge vs KG-RAG & 0.15 \\

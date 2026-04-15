@@ -1,0 +1,377 @@
+{
+  "statistics": {
+    "mean_disagreement": 0.916487457771534,
+    "std_disagreement": 0.11146465507903554,
+    "max_disagreement": 1.0,
+    "min_disagreement": 0.13397227216878582,
+    "samples_with_high_disagreement": 199,
+    "percent_high_disagreement": 99.5
+  },
+  "domain_analysis": [
+    {
+      "domain": "General Knowledge",
+      "mean_disagreement": 0.9337096876238355,
+      "std_disagreement": 0.1243166541393286,
+      "max_disagreement": 1.0,
+      "n_samples": 67
+    },
+    {
+      "domain": "Finance",
+      "mean_disagreement": 0.903364603555823,
+      "std_disagreement": 0.09453948660980527,
+      "max_disagreement": 1.0,
+      "n_samples": 67
+    },
+    {
+      "domain": "Biomedicine",
+      "mean_disagreement": 0.9123259703828737,
+      "std_disagreement": 0.11133032962657025,
+      "max_disagreement": 1.0,
+      "n_samples": 66
+    }
+  ],
+  "failure_cases": [
+    {
+      "sample_id": "hotpotqa_57",
+      "domain": "General Knowledge",
+      "question": "The Meadowbrook State Parkway connects to the Southern State Parkway in a community with what population as of the 2010 census?",
+      "answer": "The Meadowbrook State Parkway connects to the Southern State Parkway in North Merrick, a community with a population of 12,272 as of the 2010 census.",
+      "framework_scores": {
+        "RAGAS_faithfulness": 1.0,
+        "DeepEval_faithfulness": 1.0,
+        "RAGChecker_faithfulness": 0.0,
+        "ARES_answer_faithfulness": 0.8225076866268396,
+        "FaithJudge_faithfulness": 1.0,
+        "KG-RAG_kg_faithfulness": 0.906301487619716
+      },
+      "max_disagreement": 1.0,
+      "high_scorer": "RAGAS",
+      "low_scorer": "RAGChecker",
+      "analysis": "RAGAS scores 1.00 while RAGChecker scores 0.00 (difference: 1.00). Methodological difference: RAGAS uses LLM-as-judge with claim decomposition, while RAGChecker uses NLI-based claim verification."
+    },
+    {
+      "sample_id": "hotpotqa_12",
+      "domain": "General Knowledge",
+      "question": "Socialist conferences were held with what countries that opposed the Central Powers in the First World War?",
+      "answer": "The socialist conferences were held with the socialist parties of the countries that opposed the Central Powers in the First World War, specifically the Entente or Allied powers.",
+      "framework_scores": {
+        "RAGAS_faithfulness": 1.0,
+        "DeepEval_faithfulness": 1.0,
+        "RAGChecker_faithfulness": 0.0,
+        "ARES_answer_faithfulness": 0.8783918215951929,
+        "FaithJudge_faithfulness": 1.0,
+        "KG-RAG_kg_faithfulness": 0.9786456410345422
+      },
+      "max_disagreement": 1.0,
+      "high_scorer": "RAGAS",
+      "low_scorer": "RAGChecker",
+      "analysis": "RAGAS scores 1.00 while RAGChecker scores 0.00 (difference: 1.00). Methodological difference: RAGAS uses LLM-as-judge with claim decomposition, while RAGChecker uses NLI-based claim verification."
+    },
+    {
+      "sample_id": "hotpotqa_114",
+      "domain": "General Knowledge",
+      "question": "Telescope Hill is near the hamlet that is in what Suffolk County, New York town?",
+      "answer": "Telescope Hill is near the hamlet of Selden in the Town of Brookhaven, Suffolk County, New York.",
+      "framework_scores": {
+        "RAGAS_faithfulness": 1.0,
+        "DeepEval_faithfulness": 1.0,
+        "RAGChecker_faithfulness": 0.0,
+        "ARES_answer_faithfulness": 0.8118978835941535,
+        "FaithJudge_faithfulness": 1.0,
+        "KG-RAG_kg_faithfulness": 0.8970598880925099
+      },
+      "max_disagreement": 1.0,
+      "high_scorer": "RAGAS",
+      "low_scorer": "RAGChecker",
+      "analysis": "RAGAS scores 1.00 while RAGChecker scores 0.00 (difference: 1.00). Methodological difference: RAGAS uses LLM-as-judge with claim decomposition, while RAGChecker uses NLI-based claim verification."
+    },
+    {
+      "sample_id": "hotpotqa_71",
+      "domain": "General Knowledge",
+      "question": "Ivan Simson was under the command of the officer who was most noted for a defeat at what WWII battle?",
+      "answer": "Ivan Simson was under the command of Lieutenant-General Arthur Ernest Percival, who was most noted for his defeat at the Battle of Singapore during WWII.",
+      "framework_scores": {
+        "RAGAS_faithfulness": 1.0,
+        "DeepEval_faithfulness": 1.0,
+        "RAGChecker_faithfulness": 0.0,
+        "ARES_answer_faithfulness": 0.8800841872749252,
+        "FaithJudge_faithfulness": 1.0,
+        "KG-RAG_kg_faithfulness": 0.9325021137240712
+      },
+      "max_disagreement": 1.0,
+      "high_scorer": "RAGAS",
+      "low_scorer": "RAGChecker",
+      "analysis": "RAGAS scores 1.00 while RAGChecker scores 0.00 (difference: 1.00). Methodological difference: RAGAS uses LLM-as-judge with claim decomposition, while RAGChecker uses NLI-based claim verification."
+    },
+    {
+      "sample_id": "hotpotqa_52",
+      "domain": "General Knowledge",
+      "question": "Why does the City of Boston get their christmas tree from Ainslee Glen Nova Scotia?",
+      "answer": "The City of Boston gets their Christmas tree from Ainslie Glen, Nova Scotia as a gesture of thanks for their assistance after the 1917 Halifax Explosion. This tradition has been ongoing since 1971.",
+      "framework_scores": {
+        "RAGAS_faithfulness": 0.5,
+        "DeepEval_faithfulness": 0.5,
+        "RAGChecker_faithfulness": 0.0,
+        "ARES_answer_faithfulness": 0.8112168917313611,
+        "FaithJudge_faithfulness": 1.0,
+        "KG-RAG_kg_faithfulness": 0.770528070098626
+      },
+      "max_disagreement": 1.0,
+      "high_scorer": "FaithJudge",
+      "low_scorer": "RAGChecker",
+      "analysis": "FaithJudge scores 1.00 while RAGChecker scores 0.00 (difference: 1.00). Methodological difference: FaithJudge uses LLM-as-judge with few-shot examples, while RAGChecker uses NLI-based claim verification."
+    },
+    {
+      "sample_id": "hotpotqa_346",
+      "domain": "General Knowledge",
+      "question": "Are Agee and To Shoot an Elephant both documentaries about war?",
+      "answer": "No, Agee is a documentary about the writer James Agee, while To Shoot an Elephant is a documentary about the 2008-2009 Gaza War.",
+      "framework_scores": {
+        "RAGAS_faithfulness": 1.0,
+        "DeepEval_faithfulness": 1.0,
+        "RAGChecker_faithfulness": 0.0,
+        "ARES_answer_faithfulness": 1.0,
+        "FaithJudge_faithfulness": 1.0,
+        "KG-RAG_kg_faithfulness": 0.7535312950088018
+      },
+      "max_disagreement": 1.0,
+      "high_scorer": "RAGAS",
+      "low_scorer": "RAGChecker",
+      "analysis": "RAGAS scores 1.00 while RAGChecker scores 0.00 (difference: 1.00). Methodological difference: RAGAS uses LLM-as-judge with claim decomposition, while RAGChecker uses NLI-based claim verification."
+    },
+    {
+      "sample_id": "hotpotqa_44",
+      "domain": "General Knowledge",
+      "question": "Which style is the building located on the East Side of Midtown Manhattan that Robert Von Ancken appraised? ",
+      "answer": "The Chrysler Building is an Art Deco-style skyscraper located on the East Side of Midtown Manhattan that Robert Von Ancken appraised.",
+      "framework_scores": {
+        "RAGAS_faithfulness": 1.0,
+        "DeepEval_faithfulness": 1.0,
+        "RAGChecker_faithfulness": 0.0,
+        "ARES_answer_faithfulness": 0.9169051246592856,
+        "FaithJudge_faithfulness": 1.0,
+        "KG-RAG_kg_faithfulness": 0.8825572985237697
+      },
+      "max_disagreement": 1.0,
+      "high_scorer": "RAGAS",
+      "low_scorer": "RAGChecker",
+      "analysis": "RAGAS scores 1.00 while RAGChecker scores 0.00 (difference: 1.00). Methodological difference: RAGAS uses LLM-as-judge with claim decomposition, while RAGChecker uses NLI-based claim verification."
+    },
+    {
+      "sample_id": "hotpotqa_16",
+      "domain": "General Knowledge",
+      "question": "Telos was an album by a band who formed in what city?",
+      "answer": "Telos was an album by the band Forevermore, who formed in Indianapolis, Indiana.",
+      "framework_scores": {
+        "RAGAS_faithfulness": 1.0,
+        "DeepEval_faithfulness": 1.0,
+        "RAGChecker_faithfulness": 0.0,
+        "ARES_answer_faithfulness": 0.7861860248484198,
+        "FaithJudge_faithfulness": 1.0,
+        "KG-RAG_kg_faithfulness": 0.8997439458031549
+      },
+      "max_disagreement": 1.0,
+      "high_scorer": "RAGAS",
+      "low_scorer": "RAGChecker",
+      "analysis": "RAGAS scores 1.00 while RAGChecker scores 0.00 (difference: 1.00). Methodological difference: RAGAS uses LLM-as-judge with claim decomposition, while RAGChecker uses NLI-based claim verification."
+    },
+    {
+      "sample_id": "hotpotqa_15",
+      "domain": "General Knowledge",
+      "question": "Manchester, New Hampshire is a part of the Northeast megalopolis which included what other major cities?",
+      "answer": "The Northeast megalopolis includes the major cities of Boston, Providence, Hartford, New York City, Philadelphia, Wilmington, Baltimore, and Washington, D.C.",
+      "framework_scores": {
+        "RAGAS_faithfulness": 1.0,
+        "DeepEval_faithfulness": 1.0,
+        "RAGChecker_faithfulness": 0.0,
+        "ARES_answer_faithfulness": 0.9626875646599008,
+        "FaithJudge_faithfulness": 1.0,
+        "KG-RAG_kg_faithfulness": 1.0
+      },
+      "max_disagreement": 1.0,
+      "high_scorer": "RAGAS",
+      "low_scorer": "RAGChecker",
+      "analysis": "RAGAS scores 1.00 while RAGChecker scores 0.00 (difference: 1.00). Methodological difference: RAGAS uses LLM-as-judge with claim decomposition, while RAGChecker uses NLI-based claim verification."
+    },
+    {
+      "sample_id": "hotpotqa_258",
+      "domain": "General Knowledge",
+      "question": "In what year did the actor who starred in the TV Land original series \"The Soul Man\" host the Black Movie Awards?",
+      "answer": "The actor who starred in the TV Land original series \"The Soul Man\" hosted the Black Movie Awards in 2005.",
+      "framework_scores": {
+        "RAGAS_faithfulness": 1.0,
+        "DeepEval_faithfulness": 1.0,
+        "RAGChecker_faithfulness": 0.0,
+        "ARES_answer_faithfulness": 0.8367937257209931,
+        "FaithJudge_faithfulness": 1.0,
+        "KG-RAG_kg_faithfulness": 0.9287408587467548
+      },
+      "max_disagreement": 1.0,
+      "high_scorer": "RAGAS",
+      "low_scorer": "RAGChecker",
+      "analysis": "RAGAS scores 1.00 while RAGChecker scores 0.00 (difference: 1.00). Methodological difference: RAGAS uses LLM-as-judge with claim decomposition, while RAGChecker uses NLI-based claim verification."
+    },
+    {
+      "sample_id": "msmarco_101",
+      "domain": "General Knowledge",
+      "question": "where is deerfield beach florida located",
+      "answer": "Deerfield Beach, Florida is located in Broward County, on the Atlantic Ocean about three miles south of Boca Raton and 20 miles north of Fort Lauderdale. The primary coordinate point for Deerfield Beach is located at latitude 26.3117 and longitude -80.1254 in Broward County.",
+      "framework_scores": {
+        "RAGAS_faithfulness": 1.0,
+        "DeepEval_faithfulness": 1.0,
+        "RAGChecker_faithfulness": 0.0,
+        "ARES_answer_faithfulness": 0.9188238811690284,
+        "FaithJudge_faithfulness": 1.0,
+        "KG-RAG_kg_faithfulness": 1.0
+      },
+      "max_disagreement": 1.0,
+      "high_scorer": "RAGAS",
+      "low_scorer": "RAGChecker",
+      "analysis": "RAGAS scores 1.00 while RAGChecker scores 0.00 (difference: 1.00). Methodological difference: RAGAS uses LLM-as-judge with claim decomposition, while RAGChecker uses NLI-based claim verification."
+    },
+    {
+      "sample_id": "msmarco_279",
+      "domain": "General Knowledge",
+      "question": "what is galvanizing",
+      "answer": "Galvanizing is the process of applying a protective zinc coating to steel or iron in order to prevent rusting. This can be done through methods such as hot-dip galvanization or electro-galvanizing, and the zinc coating protects the metal from corrosion and provides abrasion resistance.",
+      "framework_scores": {
+        "RAGAS_faithfulness": 1.0,
+        "DeepEval_faithfulness": 1.0,
+        "RAGChecker_faithfulness": 0.0,
+        "ARES_answer_faithfulness": 0.8830783737479234,
+        "FaithJudge_faithfulness": 1.0,
+        "KG-RAG_kg_faithfulness": 0.9158306051783214
+      },
+      "max_disagreement": 1.0,
+      "high_scorer": "RAGAS",
+      "low_scorer": "RAGChecker",
+      "analysis": "RAGAS scores 1.00 while RAGChecker scores 0.00 (difference: 1.00). Methodological difference: RAGAS uses LLM-as-judge with claim decomposition, while RAGChecker uses NLI-based claim verification. Long context may affect precision-based metrics differently."
+    },
+    {
+      "sample_id": "msmarco_214",
+      "domain": "General Knowledge",
+      "question": "how is Pseudofolliculitis is pronounced",
+      "answer": "Pseudofolliculitis barbae is pronounced soo-doe-fol-li-cu-li'-tis",
+      "framework_scores": {
+        "RAGAS_faithfulness": 1.0,
+        "DeepEval_faithfulness": 1.0,
+        "RAGChecker_faithfulness": 0.0,
+        "ARES_answer_faithfulness": 0.790158155884943,
+        "FaithJudge_faithfulness": 1.0,
+        "KG-RAG_kg_faithfulness": 0.9873449300849622
+      },
+      "max_disagreement": 1.0,
+      "high_scorer": "RAGAS",
+      "low_scorer": "RAGChecker",
+      "analysis": "RAGAS scores 1.00 while RAGChecker scores 0.00 (difference: 1.00). Methodological difference: RAGAS uses LLM-as-judge with claim decomposition, while RAGChecker uses NLI-based claim verification. Long context may affect precision-based metrics differently."
+    },
+    {
+      "sample_id": "msmarco_112",
+      "domain": "General Knowledge",
+      "question": "what county is jefferson city mo in",
+      "answer": "Jefferson City, MO is the county seat of Cole County.",
+      "framework_scores": {
+        "RAGAS_faithfulness": 1.0,
+        "DeepEval_faithfulness": 1.0,
+        "RAGChecker_faithfulness": 0.0,
+        "ARES_answer_faithfulness": 0.9015194339082704,
+        "FaithJudge_faithfulness": 1.0,
+        "KG-RAG_kg_faithfulness": 1.0
+      },
+      "max_disagreement": 1.0,
+      "high_scorer": "RAGAS",
+      "low_scorer": "RAGChecker",
+      "analysis": "RAGAS scores 1.00 while RAGChecker scores 0.00 (difference: 1.00). Methodological difference: RAGAS uses LLM-as-judge with claim decomposition, while RAGChecker uses NLI-based claim verification. Long context may affect precision-based metrics differently."
+    },
+    {
+      "sample_id": "msmarco_301",
+      "domain": "General Knowledge",
+      "question": "what size is costa rica",
+      "answer": "Costa Rica has a size of 19,700 square miles (51,100 sq. km).",
+      "framework_scores": {
+        "RAGAS_faithfulness": 1.0,
+        "DeepEval_faithfulness": 1.0,
+        "RAGChecker_faithfulness": 0.0,
+        "ARES_answer_faithfulness": 0.8462228489699848,
+        "FaithJudge_faithfulness": 1.0,
+        "KG-RAG_kg_faithfulness": 1.0
+      },
+      "max_disagreement": 1.0,
+      "high_scorer": "RAGAS",
+      "low_scorer": "RAGChecker",
+      "analysis": "RAGAS scores 1.00 while RAGChecker scores 0.00 (difference: 1.00). Methodological difference: RAGAS uses LLM-as-judge with claim decomposition, while RAGChecker uses NLI-based claim verification."
+    }
+  ],
+  "agreement_cases": [
+    {
+      "id": "hotpotqa_13",
+      "domain": "General Knowledge",
+      "disagreement": 0.13397227216878582,
+      "mean_score": 0.9776712879718691,
+      "scores": {
+        "RAGAS_faithfulness": 1.0,
+        "DeepEval_faithfulness": 1.0,
+        "RAGChecker_faithfulness": 1.0,
+        "ARES_answer_faithfulness": 0.8660277278312142,
+        "FaithJudge_faithfulness": 1.0,
+        "KG-RAG_kg_faithfulness": 1.0
+      }
+    },
+    {
+      "id": "covidqa_135",
+      "domain": "Biomedicine",
+      "disagreement": 0.34490568767625873,
+      "mean_score": 0.3217341528535384,
+      "scores": {
+        "RAGAS_faithfulness": 0.3333333333333333,
+        "DeepEval_faithfulness": 0.3333333333333333,
+        "RAGChecker_faithfulness": 0.1122074750188813,
+        "ARES_answer_faithfulness": 0.45711316269514,
+        "FaithJudge_faithfulness": 0.3,
+        "KG-RAG_kg_faithfulness": 0.3944176127405424
+      }
+    },
+    {
+      "id": "finqa_187",
+      "domain": "Finance",
+      "disagreement": 0.6666666666666666,
+      "mean_score": 0.42150267108503153,
+      "scores": {
+        "RAGAS_faithfulness": 0.6666666666666666,
+        "DeepEval_faithfulness": 0.6666666666666666,
+        "RAGChecker_faithfulness": 0.0,
+        "ARES_answer_faithfulness": 0.3415730089121229,
+        "FaithJudge_faithfulness": 0.38,
+        "KG-RAG_kg_faithfulness": 0.4741096842647326
+      }
+    },
+    {
+      "id": "finqa_326",
+      "domain": "Finance",
+      "disagreement": 0.6666666666666666,
+      "mean_score": 0.4191358492553236,
+      "scores": {
+        "RAGAS_faithfulness": 0.6666666666666666,
+        "DeepEval_faithfulness": 0.0,
+        "RAGChecker_faithfulness": 0.149520423335162,
+        "ARES_answer_faithfulness": 0.5341801799313827,
+        "FaithJudge_faithfulness": 0.65,
+        "KG-RAG_kg_faithfulness": 0.5144478255987305
+      }
+    },
+    {
+      "id": "finqa_292",
+      "domain": "Finance",
+      "disagreement": 0.6787148929457332,
+      "mean_score": 0.5028701540441107,
+      "scores": {
+        "RAGAS_faithfulness": 0.75,
+        "DeepEval_faithfulness": 0.7499999999999999,
+        "RAGChecker_faithfulness": 0.0712851070542668,
+        "ARES_answer_faithfulness": 0.1863956530971339,
+        "FaithJudge_faithfulness": 0.73,
+        "KG-RAG_kg_faithfulness": 0.5295401641132638
+      }
+    }
+  ]
+}

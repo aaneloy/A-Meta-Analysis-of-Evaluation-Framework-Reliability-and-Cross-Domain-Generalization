@@ -1,0 +1,30 @@
+{
+  "Q_statistic": 10055.63027862995,
+  "Q_df": 19,
+  "Q_pvalue": 0.0,
+  "I_squared": 99.8110511278405,
+  "framework_count": 20,
+  "framework_metrics_used": [
+    "ARES_answer_faithfulness",
+    "BERTScore_f1",
+    "DeepEval_faithfulness",
+    "FaithJudge_faithfulness",
+    "G-Eval_consistency",
+    "GaRAGe_deflection_score",
+    "HALT-RAG_nli_ensemble_score",
+    "HSAD_spectral_consistency",
+    "KG-RAG_kg_faithfulness",
+    "LRP4RAG_relevance_consistency",
+    "LUMINA_lumina_score",
+    "LettuceDetect_example_f1",
+    "MetaRAG_factoid_consistency",
+    "QAFactEval_factual_consistency",
+    "RAGAS_faithfulness",
+    "RAGChecker_faithfulness",
+    "ReDeEP_external_context_score",
+    "SIRG_attribution_consistency",
+    "TRACe_adherence",
+    "UniEval_consistency"
+  ],
+  "interpretation": "High heterogeneity - substantial framework disagreement"
+}

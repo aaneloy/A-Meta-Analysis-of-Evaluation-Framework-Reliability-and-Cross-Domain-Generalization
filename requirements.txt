@@ -1,0 +1,53 @@
+# Core dependencies
+numpy>=1.24.0
+pandas>=2.0.0
+scipy>=1.10.0
+scikit-learn>=1.2.0
+
+# PyTorch GPU wheels for NVIDIA RTX 5060-class GPUs
+--extra-index-url https://download.pytorch.org/whl/cu130
+
+# Deep learning
+torch==2.11.0+cu130
+transformers>=4.30.0
+sentence-transformers>=2.2.0
+
+# Dataset handling
+datasets>=2.14.0
+huggingface-hub>=0.16.0
+
+# Visualization
+matplotlib>=3.7.0
+seaborn>=0.12.0
+plotly>=5.15.0
+
+# RAG Evaluation Frameworks
+ragas>=0.1.0
+deepeval>=0.20.0
+bert-score>=0.3.13
+
+# LLM API (for GPT-4 LLM-as-judge)
+openai>=1.0.0
+
+# NLP utilities
+nltk>=3.8.0
+spacy>=3.5.0
+
+# Statistics
+statsmodels>=0.14.0
+pingouin>=0.5.3
+
+# Configuration
+pyyaml>=6.0
+python-dotenv>=1.0.0
+
+# Progress bars
+tqdm>=4.65.0
+
+# Jupyter support
+jupyter>=1.0.0
+ipywidgets>=8.0.0
+
+# Testing
+pytest>=7.3.0
+pytest-cov>=4.1.0

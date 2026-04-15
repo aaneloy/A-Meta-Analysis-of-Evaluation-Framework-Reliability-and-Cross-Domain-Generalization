@@ -1,0 +1,31 @@
+{
+  "use_llm": true,
+  "n_samples": 200,
+  "n_frameworks": 20,
+  "frameworks": [
+    "RAGAS",
+    "DeepEval",
+    "G-Eval",
+    "RAGChecker",
+    "TRACe",
+    "ARES",
+    "BERTScore",
+    "UniEval",
+    "QAFactEval",
+    "FaithJudge",
+    "ReDeEP",
+    "LettuceDetect",
+    "LRP4RAG",
+    "LUMINA",
+    "HALT-RAG",
+    "MetaRAG",
+    "KG-RAG",
+    "GaRAGe",
+    "HSAD",
+    "SIRG"
+  ],
+  "timestamp": "2026-04-11T02:59:44.933604",
+  "llm_primary": "deepseek/deepseek-chat",
+  "llm_fallback": "groq/llama-3.3-70b-versatile -> gemini/gemini-2.5-flash",
+  "normalization": "min-max per metric to [0,1]"
+}

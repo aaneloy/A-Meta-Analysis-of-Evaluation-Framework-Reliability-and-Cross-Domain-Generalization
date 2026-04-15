@@ -1,0 +1,98 @@
+{
+  "n_clusters": 3,
+  "cluster_assignments": {
+    "ARES": 1,
+    "BERTScore": 3,
+    "DeepEval": 2,
+    "FaithJudge": 2,
+    "G-Eval": 2,
+    "GaRAGe": 3,
+    "HALT-RAG": 3,
+    "HSAD": 1,
+    "KG-RAG": 1,
+    "LRP4RAG": 1,
+    "LUMINA": 1,
+    "LettuceDetect": 1,
+    "MetaRAG": 1,
+    "QAFactEval": 3,
+    "RAGAS": 2,
+    "RAGChecker": 3,
+    "ReDeEP": 1,
+    "SIRG": 1,
+    "TRACe": 1,
+    "UniEval": 1
+  },
+  "clusters": {
+    "cluster_1": {
+      "frameworks": [
+        "ARES",
+        "HSAD",
+        "KG-RAG",
+        "LRP4RAG",
+        "LUMINA",
+        "LettuceDetect",
+        "MetaRAG",
+        "ReDeEP",
+        "SIRG",
+        "TRACe",
+        "UniEval"
+      ],
+      "size": 11,
+      "within_cluster_mean_r": 0.63
+    },
+    "cluster_2": {
+      "frameworks": [
+        "DeepEval",
+        "FaithJudge",
+        "G-Eval",
+        "RAGAS"
+      ],
+      "size": 4,
+      "within_cluster_mean_r": 0.55
+    },
+    "cluster_3": {
+      "frameworks": [
+        "BERTScore",
+        "GaRAGe",
+        "HALT-RAG",
+        "QAFactEval",
+        "RAGChecker"
+      ],
+      "size": 5,
+      "within_cluster_mean_r": 0.01
+    }
+  },
+  "between_cluster_mean_r": 0.1,
+  "wcss_elbow": [
+    {
+      "k": 2,
+      "wcss": 3.176531962308251
+    },
+    {
+      "k": 3,
+      "wcss": 1.5930705167313297
+    },
+    {
+      "k": 4,
+      "wcss": 1.5014532814415984
+    },
+    {
+      "k": 5,
+      "wcss": 1.4650319990516967
+    },
+    {
+      "k": 6,
+      "wcss": 0.4872375775389482
+    },
+    {
+      "k": 7,
+      "wcss": 0.4872375775389482
+    },
+    {
+      "k": 8,
+      "wcss": 0.4872375775389482
+    }
+  ],
+  "linkage_method": "ward",
+  "distance_metric": "sqrt(2*(1-r))"
+}

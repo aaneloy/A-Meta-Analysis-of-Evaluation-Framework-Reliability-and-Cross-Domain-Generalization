@@ -1,0 +1,6 @@
+{
+  "n": 50,
+  "n_decided": 5,
+  "coverage": 0.1,
+  "accuracy_on_decided": 0.6
+}
