@@ -1,0 +1,784 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Meta-Analysis of RAG Evaluation Framework Reliability | Canadian AI 2026</title>
+
+  <link rel="icon" type="image/png" href="slides_assets/logos/caiac_bgold.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reset.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/theme/white.min.css" id="theme">
+
+  <style>
+    :root{
+      --navy:#002147; --red:#E4002B; --blue:#0056b3; --midblue:#5b8db8;
+      --ink:#1f2733; --soft:#eef3fb; --line:#d6e0ef; --redsoft:#fdeaed;
+    }
+    html, body { width:100%; height:100%; margin:0; overflow:hidden; }
+    .reveal { width:100%; height:100%; font-family:"Segoe UI","Helvetica Neue",Arial,sans-serif; color:var(--ink); font-size:32px; }
+    .reveal .slides { width:100%; height:100%; text-align:left; }
+    .reveal h1,.reveal h2,.reveal h3{ color:var(--navy); font-weight:800; text-transform:none; letter-spacing:0; margin:0; }
+    .reveal h2{ font-size:1.18em; line-height:1.1; max-width:1120px; }
+    .reveal h3{ font-size:0.82em; margin-bottom:0.2em; }
+    .reveal p,.reveal li{ color:var(--ink); }
+    .reveal strong{ color:var(--navy); }
+    .reveal a{ color:var(--blue); text-decoration:none; }
+    .reveal a:hover{ color:var(--red); text-decoration:underline; }
+
+    /* every content slide fills the frame */
+    .reveal .slides > section{ width:100%; height:100%; }
+    section.slide{ display:flex; flex-direction:column; width:100%; height:100%;
+                   padding:26px 48px 40px; box-sizing:border-box; }
+    .head{ flex:0 0 auto; border-bottom:2px solid var(--line); padding-bottom:10px; margin-bottom:16px; }
+    .body{ flex:1 1 auto; display:flex; flex-direction:column; justify-content:center;
+           min-height:0; gap:14px; }
+    .lede{ flex:0 0 auto; max-width:1180px; margin:0; color:#4e596a; font-size:0.58em;
+           line-height:1.36; }
+
+    .tag{ display:inline-block; font-size:0.42em; font-weight:800; letter-spacing:0.14em;
+          text-transform:uppercase; padding:5px 14px; border-radius:8px; margin-bottom:10px; color:#fff; }
+    .tag.red{ background:var(--red);} .tag.blue{ background:var(--blue);} .tag.navy{ background:var(--navy);}
+
+    .reveal ul{ margin:0 0 0 1em; } .reveal li{ margin:0.34em 0; line-height:1.4; font-size:0.8em; }
+    .reveal li::marker{ color:var(--blue); }
+    .hl-red{ color:var(--red); font-weight:700;} .hl-blue{ color:var(--blue); font-weight:700;}
+    .muted{ color:#667;} .small{ font-size:0.8em;} .xs{ font-size:0.62em; color:#667;}
+
+    /* columns via flex so figures fill height */
+    .cols{ display:flex; gap:30px; flex:1 1 auto; min-height:0; align-items:stretch; }
+    .col{ flex:1; min-height:0; display:flex; flex-direction:column; justify-content:center; }
+    .col.fig{ align-items:center; justify-content:center; }
+    .col.fig.grow{ flex:1.15; }
+    .figrow{ display:flex; gap:22px; flex:1 1 auto; min-height:0; }
+    .figcell{ flex:1; min-height:0; display:flex; flex-direction:column; align-items:center; justify-content:center; }
+    .zoom{ max-height:100%; max-width:100%; object-fit:contain; transition:transform .3s ease;
+           cursor:zoom-in; border:1px solid var(--line); border-radius:8px; background:#fff; }
+    .result-figures .figrow, .result-figures .col.fig{ padding-inline:10px; box-sizing:border-box; }
+    .zoom:hover{ transform:scale(1.6); box-shadow:0 14px 46px rgba(0,0,0,.28); position:relative; z-index:60; }
+    .figcap{ font-size:0.46em; color:#667; margin-top:6px; text-align:center; }
+
+    .takeaway{ flex:0 0 auto; background:var(--redsoft); border-left:7px solid var(--red);
+               border-radius:8px; padding:11px 18px; font-size:0.66em; color:var(--navy); }
+    .takeaway b{ color:var(--red); }
+
+    .statrow{ display:flex; gap:20px; flex-wrap:wrap; }
+    .stat{ background:var(--soft); border:2px solid var(--line); border-radius:8px; padding:14px 22px;
+           text-align:center; flex:1; min-width:150px; }
+    .stat .n{ font-size:1.6em; font-weight:800; color:var(--navy); line-height:1; }
+    .stat .l{ font-size:0.42em; color:#556; margin-top:8px; letter-spacing:.04em; }
+    .stat.red .n{ color:var(--red);} .stat.blue .n{ color:var(--blue);}
+
+    .banner{ background:var(--red); color:#fff; font-weight:700; border-radius:12px;
+             padding:16px 22px; font-size:0.74em; line-height:1.35; }
+    .banner.blue{ background:var(--blue);} .banner.navy{ background:var(--navy);}
+
+    .card{ background:#fff; border:2px solid var(--line); border-left:7px solid var(--blue);
+           border-radius:10px; padding:14px 20px; }
+    .card.red{ border-left-color:var(--red);} .card.navy{ border-left-color:var(--navy);}
+    .card .h{ font-weight:800; color:var(--navy); font-size:0.82em; }
+    .card .b{ font-size:0.66em; color:#445; margin-top:4px; line-height:1.35; }
+    .proof{ background:var(--soft); border-top:4px solid var(--navy); border-radius:8px;
+            padding:16px 18px; }
+    .proof.red{ border-top-color:var(--red); }
+    .proof.blue{ border-top-color:var(--blue); }
+    .proof .h{ color:var(--navy); font-weight:800; font-size:0.66em; margin-bottom:8px; }
+    .proof .b{ color:#445; font-size:0.58em; line-height:1.35; }
+
+    table.tax{ border-collapse:collapse; font-size:0.66em; width:100%; }
+    table.tax td{ padding:9px 12px; border-bottom:1px solid var(--line); vertical-align:middle; }
+    table.tax td.fam{ font-weight:800; color:#fff; white-space:nowrap; border-radius:6px; text-align:center; }
+    .fam-judge{ background:var(--blue);} .fam-nli{ background:#7a1f2b;} .fam-emb{ background:#0a7d6b;}
+    .fam-tok{ background:#946200;} .fam-int{ background:var(--navy);} .fam-oth{ background:#555;}
+
+    table.data{ border-collapse:collapse; font-size:0.66em; width:100%; }
+    table.data th{ background:var(--navy); color:#fff; padding:9px 11px; text-align:left; }
+    table.data td{ padding:8px 11px; border-bottom:1px solid var(--line); }
+    table.data tr:nth-child(even){ background:var(--soft); }
+
+    .domaincards{ display:flex; gap:20px; }
+    .dcard{ flex:1; border:2px solid var(--line); border-radius:12px; padding:16px; text-align:center; }
+    .dcard.gk{ border-top:6px solid var(--navy);} .dcard.fin{ border-top:6px solid var(--red);}
+    .dcard.bio{ border-top:6px solid var(--blue);}
+    .dcard .h{ font-weight:800; color:var(--navy); font-size:0.8em; }
+    .dcard .n{ font-size:2.0em; font-weight:800; color:var(--navy); }
+    .dcard.fin .n{ color:var(--red);} .dcard.bio .n{ color:var(--blue);}
+    .dcard .b{ font-size:0.58em; color:#556; }
+
+    .ragflow{ display:grid; grid-template-columns:1fr 42px 1fr 42px 1fr; gap:12px;
+              align-items:center; width:100%; }
+    .node{ min-height:130px; border:2px solid var(--line); border-top:7px solid var(--navy);
+           border-radius:8px; padding:18px; background:#fff; display:flex; flex-direction:column;
+           justify-content:center; }
+    .node.red{ border-top-color:var(--red); } .node.blue{ border-top-color:var(--blue); }
+    .node .h{ color:var(--navy); font-weight:800; font-size:0.72em; }
+    .node .b{ color:#445; font-size:0.56em; line-height:1.35; margin-top:8px; }
+    .arrow{ color:var(--red); font-weight:900; text-align:center; font-size:1.2em; }
+    .question{ background:var(--navy); color:#fff; border-radius:8px; padding:18px 22px;
+               font-size:0.7em; font-weight:700; line-height:1.32; }
+    .methodgrid{ display:grid; grid-template-columns:repeat(4,1fr); gap:14px; }
+    .method{ border:2px solid var(--line); border-top:6px solid var(--navy); border-radius:8px;
+             padding:14px; background:#fff; }
+    .method.red{ border-top-color:var(--red); } .method.blue{ border-top-color:var(--blue); }
+    .method .h{ color:var(--navy); font-size:0.62em; font-weight:800; }
+    .method .b{ color:#445; font-size:0.5em; line-height:1.3; margin-top:6px; }
+    .studyline{ display:grid; grid-template-columns:1fr 36px 1fr 36px 1fr 36px 1fr; gap:10px;
+                align-items:center; width:100%; }
+    .step{ min-height:118px; border:2px solid var(--line); border-radius:8px; padding:14px;
+           display:flex; flex-direction:column; justify-content:center; background:#fff; }
+    .step .n{ color:var(--red); font-weight:900; font-size:0.48em; letter-spacing:0.12em; text-transform:uppercase; }
+    .step .h{ color:var(--navy); font-weight:800; font-size:0.62em; margin-top:7px; }
+    .step .b{ color:#445; font-size:0.48em; line-height:1.28; margin-top:6px; }
+    .verdicts{ display:grid; grid-template-columns:2fr 1fr 1fr; gap:16px; }
+    .verdict{ min-height:182px; border:2px solid var(--line); border-radius:8px; padding:18px;
+              display:flex; flex-direction:column; justify-content:center; text-align:center; background:#fff; }
+    .verdict.contested{ background:var(--redsoft); border-color:#f3b9c4; }
+    .verdict .n{ color:var(--navy); font-size:1.85em; line-height:1; font-weight:900; }
+    .verdict.contested .n{ color:var(--red); }
+    .verdict .h{ color:var(--navy); font-size:0.64em; font-weight:800; margin-top:10px; }
+    .verdict .b{ color:#445; font-size:0.48em; line-height:1.3; margin-top:8px; }
+
+    /* title + closing */
+    .center-slide{ display:flex; flex-direction:column; align-items:center;
+                   justify-content:center; width:100%; height:100%; text-align:center;
+                   padding:30px 60px; box-sizing:border-box; position:relative; }
+    .venue{ display:flex; align-items:center; justify-content:center; gap:16px; margin-bottom:8px; }
+    .venue img{ height:62px; }
+    .venue .vt{ text-align:left; font-size:0.46em; color:#445; line-height:1.25; }
+    .venue .vt b{ color:var(--navy); font-size:1.25em; }
+    .paper-id{ display:inline-flex; align-items:center; justify-content:center; border:1.5px solid var(--line);
+               border-radius:8px; color:var(--navy); background:var(--soft); font-size:0.42em;
+               font-weight:800; letter-spacing:0.08em; text-transform:uppercase; padding:6px 12px; }
+    .maintitle{ font-size:1.5em; font-weight:800; color:var(--navy); line-height:1.14; margin:8px 0; }
+    .rule{ height:4px; width:170px; background:var(--red); margin:8px auto 16px; border-radius:3px; }
+    .authors{ display:flex; justify-content:center; gap:64px; margin:4px 0 10px; }
+    .author{ display:flex; flex-direction:column; align-items:center; gap:7px; max-width:340px; }
+    .headshot{ width:108px; height:108px; border-radius:50%; overflow:hidden; border:3px solid var(--navy);
+               background:var(--soft); display:flex; align-items:center; justify-content:center; }
+    .headshot img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .headshot.asif img{ object-position:center 30%; }
+    .headshot.nazmul img{ width:240%; height:240%; max-width:none; max-height:none; transform:translate(12%, 22%); }
+    .headshot.placeholder::after{ content:attr(data-initials); color:var(--navy); font-weight:800; font-size:1.5em; }
+    .author .nm{ font-weight:800; color:var(--navy); font-size:0.6em; }
+    .author .rl{ font-size:0.42em; color:#445; line-height:1.32; }
+    .contact{ font-size:0.46em; color:#445; }
+    .repo-btn{ display:inline-block; margin-top:12px; background:var(--navy); color:#fff !important;
+               padding:10px 22px; border-radius:24px; font-size:0.46em; font-weight:700; }
+    .repo-btn:hover{ background:var(--red); text-decoration:none; }
+    .reveal .repo-dock{ position:absolute; left:50%; bottom:2px; transform:translateX(-50%); margin-top:0; }
+    .logostrip{ display:flex; justify-content:center; align-items:center; gap:20px; margin-top:20px; }
+    .lcard{ border:1.5px solid var(--line); border-radius:10px; padding:8px 16px; background:#fff;
+            height:64px; display:flex; align-items:center; }
+    .lcard.dark{ background:var(--navy); border-color:var(--navy);} .lcard img{ max-height:44px; max-width:170px; }
+
+    .navbtn{ position:fixed; top:50%; transform:translateY(-50%); z-index:70; cursor:pointer;
+             width:52px; height:52px; border-radius:50%; border:none; background:rgba(0,33,71,.78);
+             color:#fff; font-size:26px; line-height:52px; text-align:center; transition:background .2s; }
+    .navbtn:hover{ background:var(--red); } #navprev{ left:18px; } #navnext{ right:18px; }
+    .reveal .slide-number{ background:var(--navy); font-size:14px; }
+    .reveal .progress{ color:var(--red); height:5px; }
+    .closing-slide{ gap:8px; }
+    .reveal .closing-copy{ max-width:940px; color:#edf4ff; font-size:0.58em; line-height:1.38; margin:4px 0 12px; }
+    .reveal .closing-contact{ color:#fff; font-size:0.66em; margin:6px 0; }
+    .reveal .closing-role{ color:#cdd9ec; font-size:0.5em; line-height:1.38; margin:0; }
+    .closing-link{ color:#9ec5ff; font-size:0.5em; margin-top:18px; max-width:920px; overflow-wrap:anywhere; }
+    @media (max-width:760px){
+      .reveal{ font-size:26px; }
+      .reveal h2{ font-size:1.06em; }
+      section.slide{ padding:18px 24px 36px; }
+      .body{ gap:10px; }
+      .head{ margin-bottom:10px; padding-bottom:8px; }
+      .lede{ font-size:0.52em; line-height:1.28; }
+      .cols{ gap:14px; }
+      .ragflow{ grid-template-columns:1fr; gap:10px; }
+      .ragflow .arrow{ display:none; }
+      .node{ min-height:0; padding:13px 16px; }
+      .methodgrid{ grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+      .method{ padding:12px; }
+      .statrow{ gap:10px; flex-wrap:wrap; }
+      .stat{ min-width:calc(50% - 5px); padding:10px 8px; }
+      .stat .n{ font-size:1.15em; }
+      .figrow{ gap:10px; flex:0 0 auto; height:176px; }
+      .figcell{ min-width:0; }
+      .figcap{ font-size:0.38em; line-height:1.25; }
+      .result-figures .col.fig{ padding-inline:16px; }
+      .result-figures .figrow{ padding-inline:12px; }
+      .result-figures.result-heterogeneity .figrow{ display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); }
+      .result-figures.result-heterogeneity .zoom{ width:100%; }
+      .results-corr .cols{ display:grid; grid-template-columns:1fr; gap:8px; }
+      .results-corr .col{ justify-content:flex-start; }
+      .results-corr .col.fig{ max-height:198px; }
+      .results-corr li{ font-size:0.66em; line-height:1.25; margin:0.22em 0; }
+      .results-corr .takeaway{ font-size:0.55em; }
+      .center-slide{ padding:24px 20px 40px; }
+      .closing-slide{ justify-content:center; text-align:center; }
+      .closing-slide h1{ font-size:1.7em !important; }
+      .closing-copy{ font-size:0.56em; max-width:480px; }
+      .closing-contact{ font-size:0.58em; }
+      .closing-role, .closing-link{ font-size:0.44em; max-width:500px; }
+    }
+  </style>
+</head>
+<body>
+<div class="reveal"><div class="slides">
+
+  <!-- 1 TITLE -->
+  <section data-background-color="#ffffff">
+    <div class="center-slide">
+      <div class="venue">
+        <img src="slides_assets/logos/caiac_bgold.png" alt="CAIAC">
+        <div class="vt"><b>Canadian AI 2026</b><br>39th Canadian Conference on Artificial Intelligence</div>
+      </div>
+      <div class="paper-id">Paper 210</div>
+      <div class="maintitle">A Meta-Analysis of Evaluation Framework<br>Reliability and Cross-Domain Generalization</div>
+      <div class="rule"></div>
+      <div class="authors">
+        <div class="author">
+          <div class="headshot asif" data-initials="AAN">
+            <img src="slides_assets/headshots/asif.png" alt="Asif Ahmed Neloy"
+                 onerror="this.style.display='none'; this.parentElement.classList.add('placeholder');">
+          </div>
+          <div class="nm">Asif Ahmed Neloy</div>
+          <div class="rl">Senior AI Engineer, Delta Controls<br>
+            Adjunct Professor, Faculty of Land and Food Systems,<br>University of British Columbia<br>
+            <a href="mailto:asif.neloy@ubc.ca">asif.neloy@ubc.ca</a></div>
+        </div>
+        <div class="author">
+          <div class="headshot nazmul" data-initials="MNI">
+            <img src="slides_assets/headshots/nazmul.jpg" alt="MD Nazmul Islam"
+                 onerror="this.style.display='none'; this.parentElement.classList.add('placeholder');">
+          </div>
+          <div class="nm">MD Nazmul Islam</div>
+          <div class="rl">Instructor, Computer Systems Technology,<br>University Studies, Keyano College</div>
+        </div>
+      </div>
+      <div class="logostrip">
+        <div class="lcard"><img src="slides_assets/logos/ubc-full-logo-user.png" alt="The University of British Columbia"></div>
+        <div class="lcard"><img src="slides_assets/logos/keyano.png" alt="Keyano College"></div>
+      </div>
+      <a class="repo-btn repo-dock" href="https://github.com/aaneloy/A-Meta-Analysis-of-Evaluation-Framework-Reliability-and-Cross-Domain-Generalization" target="_blank">View code and paper on GitHub</a>
+    </div>
+  </section>
+
+  <!-- 2 MOTIVATION -->
+  <section class="slide" data-background-color="#ffffff">
+    <div class="head"><span class="tag navy">Motivation</span><h2>A faithfulness score matters only when the evaluator is reliable</h2></div>
+    <div class="body">
+      <p class="lede">RAG systems can return an answer that sounds useful while still requiring a separate check that its claims are supported by retrieved context.</p>
+      <div class="ragflow">
+        <div class="node">
+          <div class="h">Retrieved context</div>
+          <div class="b">Evidence selected for the question.</div>
+        </div>
+        <div class="arrow">&gt;</div>
+        <div class="node blue">
+          <div class="h">Generated answer</div>
+          <div class="b">A RAG answer should remain grounded in that context.</div>
+        </div>
+        <div class="arrow">&gt;</div>
+        <div class="node red">
+          <div class="h">Faithfulness score</div>
+          <div class="b">The score supports research claims and deployment decisions.</div>
+        </div>
+      </div>
+      <div class="cols" style="flex:0 0 auto;">
+        <div class="proof blue">
+          <div class="h">Paper scope</div>
+          <div class="b">Faithfulness asks whether the answer is supported by the retrieved context.</div>
+        </div>
+        <div class="proof red">
+          <div class="h">Reliability question</div>
+          <div class="b">Do different faithfulness frameworks give compatible conclusions on the same answer?</div>
+        </div>
+      </div>
+      <div class="takeaway"><b>Talk focus:</b> the paper tests the measurement tools used to judge RAG faithfulness.</div>
+    </div>
+  </section>
+
+  <!-- 3 MOTIVATION -->
+  <section class="slide" data-background-color="#ffffff">
+    <div class="head"><span class="tag red">Problem</span><h2>The evaluation ecosystem makes interchangeability a testable assumption</h2></div>
+    <div class="body">
+      <p class="lede">The study compares frameworks built from different signals, so agreement must be tested on matched inputs before their scores are treated as interchangeable.</p>
+      <div class="methodgrid">
+        <div class="method">
+          <div class="h">LLM-as-judge</div>
+          <div class="b">Prompts a judge model to score groundedness or faithfulness.</div>
+        </div>
+        <div class="method red">
+          <div class="h">NLI based</div>
+          <div class="b">Checks entailment of claims against retrieved evidence.</div>
+        </div>
+        <div class="method blue">
+          <div class="h">Embedding and QA</div>
+          <div class="b">Uses semantic overlap or answer consistency signals.</div>
+        </div>
+        <div class="method">
+          <div class="h">Interpretability</div>
+          <div class="b">Probes internal signals for context reliance.</div>
+        </div>
+      </div>
+      <div class="question">If these frameworks measure the same construct, their scores should align when they see identical inputs.</div>
+      <ul>
+        <li>Prior studies validate individual tools or compare small subsets.</li>
+        <li>This paper asks whether framework choice is interchangeable across the broader evaluation ecosystem.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 4 NOVELTY + GAPS + CONTRIBUTIONS -->
+  <section class="slide" data-background-color="#ffffff">
+    <div class="head"><span class="tag blue">Contribution</span><h2>The paper tests faithfulness frameworks under matched conditions</h2></div>
+    <div class="body">
+      <p class="lede">The design holds the sample set constant and evaluates reliability across frameworks, domains, agreement statistics, clustering, and human validation.</p>
+      <div class="banner">First comprehensive cross-framework meta-analysis of RAG evaluation reliability: twenty frameworks applied to the same 200 question-context-answer triples across three domains.</div>
+      <div class="cols" style="gap:30px;">
+        <div class="col">
+          <h3 class="hl-red">Gaps</h3>
+          <ul>
+            <li>No comprehensive pairwise agreement study on identical RAG inputs.</li>
+            <li>No matched test of framework behavior across general knowledge, finance, and biomedicine.</li>
+            <li>Formal heterogeneity analysis remains rare in RAG evaluation.</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3 class="hl-blue">Contributions</h3>
+          <ul>
+            <li>Controlled reliability comparison of twenty frameworks.</li>
+            <li>Meta-analytic heterogeneity and pairwise agreement analysis.</li>
+            <li>Three empirical clusters with normalization and bootstrap checks.</li>
+            <li>Domain effects, human validation, and cross-cluster consensus.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 DEFINITIONS -->
+  <section class="slide" data-background-color="#ffffff">
+    <div class="head"><span class="tag blue">Definitions</span><h2>The study narrows faithfulness before it measures reliability</h2></div>
+    <div class="body">
+      <p class="lede">A narrow construct definition keeps the reliability question focused on support and contradiction against context.</p>
+      <div class="card red">
+        <div class="h">Working definition of faithfulness</div>
+        <div class="b">An answer is faithful to context X if every claim in the answer is entailed by X and no claim contradicts X. Scope is deliberately narrow: support and consistency, not completeness, fluency, or relevance.</div>
+      </div>
+      <div class="card navy">
+        <div class="h">Meta-analysis for measurement reliability</div>
+        <div class="b">The paper uses Cochran's Q and I-squared to test whether variation across independently developed instruments exceeds sampling error.</div>
+      </div>
+      <div class="takeaway"><b>Why this axis:</b> faithfulness is the property all twenty frameworks claim to measure.</div>
+    </div>
+  </section>
+
+  <!-- 6 SETUP: FRAMEWORKS -->
+  <section class="slide" data-background-color="#ffffff">
+    <div class="head"><span class="tag navy">Study design</span><h2>Twenty frameworks span six method groups</h2></div>
+    <div class="body">
+      <p class="lede">The framework set covers judge models, NLI, embedding and QA metrics, classifiers, interpretability methods, and other RAG evaluation approaches.</p>
+      <table class="tax">
+        <tr><td class="fam fam-judge">LLM-as-judge</td><td>RAGAS, G-Eval, DeepEval, FaithJudge</td></tr>
+        <tr><td class="fam fam-nli">NLI-based</td><td>RAGChecker, HALT-RAG</td></tr>
+        <tr><td class="fam fam-emb">Embedding / QA</td><td>BERTScore, UniEval, QAFactEval</td></tr>
+        <tr><td class="fam fam-tok">Token-level / classifier</td><td>TRACe, ARES, LettuceDetect</td></tr>
+        <tr><td class="fam fam-int">Interpretability</td><td>ReDeEP, LRP4RAG, LUMINA, HSAD, SIRG</td></tr>
+        <tr><td class="fam fam-oth">Other</td><td>GaRAGe, MetaRAG, KG-RAG</td></tr>
+      </table>
+      <div class="takeaway"><b>Coverage:</b> the framework set spans traditional metrics and interpretability methods from 2020 through 2026.</div>
+    </div>
+  </section>
+
+  <!-- 7 SETUP: DATA -->
+  <section class="slide" data-background-color="#ffffff">
+    <div class="head"><span class="tag navy">Study design</span><h2>Every framework sees the same 200 RAGBench samples</h2></div>
+    <div class="body">
+      <p class="lede">The matched dataset includes general knowledge, finance, and biomedicine examples so domain variation can be separated from framework variation.</p>
+      <div class="domaincards">
+        <div class="dcard gk"><div class="h">General Knowledge</div><div class="n">67</div><div class="b">HotpotQA, MS MARCO, HAGRID</div></div>
+        <div class="dcard fin"><div class="h">Finance</div><div class="n">67</div><div class="b">FinQA, DelucionQA</div></div>
+        <div class="dcard bio"><div class="h">Biomedicine</div><div class="n">66</div><div class="b">CovidQA, PubMedQA</div></div>
+      </div>
+      <ul>
+        <li>Every framework sees the <strong>same</strong> 200 question-context-answer triples.</li>
+        <li>Stratified design separates domain effects from framework behavior.</li>
+      </ul>
+      <div class="takeaway"><b>Controlled by design:</b> identical inputs let us attribute score differences to the framework, not the data.</div>
+    </div>
+  </section>
+
+  <!-- 8 SETUP: PROTOCOL + STATS -->
+  <section class="slide" data-background-color="#ffffff">
+    <div class="head"><span class="tag navy">Study design</span><h2>The analysis moves from scores to reliability evidence</h2></div>
+    <div class="body">
+      <p class="lede">Each stage turns the same score matrix into a different reliability view: agreement, heterogeneity, structure, domain behavior, and external validation.</p>
+      <div class="studyline">
+        <div class="step">
+          <div class="n">Step 1</div>
+          <div class="h">Score matrix</div>
+          <div class="b">Twenty primary faithfulness scores on each sample.</div>
+        </div>
+        <div class="arrow">&gt;</div>
+        <div class="step">
+          <div class="n">Step 2</div>
+          <div class="h">Agreement</div>
+          <div class="b">Correlations, bootstrap intervals, and heterogeneity.</div>
+        </div>
+        <div class="arrow">&gt;</div>
+        <div class="step">
+          <div class="n">Step 3</div>
+          <div class="h">Structure</div>
+          <div class="b">Ward clustering, normalization sensitivity, domains.</div>
+        </div>
+        <div class="arrow">&gt;</div>
+        <div class="step">
+          <div class="n">Step 4</div>
+          <div class="h">Interpretation</div>
+          <div class="b">Human validation and cross-cluster consensus.</div>
+        </div>
+      </div>
+      <div class="cols">
+        <div class="col">
+          <h3 class="hl-blue">Protocol</h3>
+          <ul>
+            <li>Each framework runs on all 200 samples using official default configurations.</li>
+            <li>LLM-judge: DeepSeek-V3 at temperature 0.</li>
+            <li>NLI: DeBERTa-v3-large fine-tuned on MNLI.</li>
+            <li>Primary scores are min-max normalized to [0, 1].</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3 class="hl-red">Statistics</h3>
+          <ul>
+            <li>Pearson and Spearman agreement with 1,000 bootstrap resamples.</li>
+            <li>Cochran's Q and I-squared heterogeneity.</li>
+            <li>Ward clustering on correlation distance.</li>
+            <li>Two-way ANOVA for domain effects.</li>
+            <li>Cross-cluster consensus and human validation (n = 50).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 R1 HETEROGENEITY -->
+  <section class="slide result-figures result-heterogeneity" data-background-color="#ffffff">
+    <div class="head"><span class="tag red">Results &middot; 1 of 8</span><h2>Inter-framework heterogeneity is substantial</h2></div>
+    <div class="body">
+      <p class="lede">The meta-analytic tests reject a picture in which observed variation is explained by sampling error alone.</p>
+      <div class="statrow">
+        <div class="stat"><div class="n">10,055.63</div><div class="l">COCHRAN'S Q (p &lt; 0.001)</div></div>
+        <div class="stat red"><div class="n">99.81%</div><div class="l">I-SQUARED</div></div>
+        <div class="stat"><div class="n">167 / 190</div><div class="l">PAIRS DIFFER (p &lt; 0.001)</div></div>
+        <div class="stat blue"><div class="n">0.980</div><div class="l">MEAN PER-SAMPLE SCORE RANGE</div></div>
+      </div>
+      <div class="figrow">
+        <div class="figcell"><img class="zoom" src="slides_assets/figures/fig7_forest_plot.png" alt="Forest plot">
+          <div class="figcap">Mean correlation of each framework with the other 19.</div></div>
+        <div class="figcell"><img class="zoom" src="slides_assets/figures/fig9_disagreement_analysis.png" alt="Disagreement analysis">
+          <div class="figcap">Per-sample score range (max minus min) across all frameworks.</div></div>
+      </div>
+      <div class="takeaway"><b>Takeaway:</b> framework choice materially changes the faithfulness score observed on identical samples.</div>
+    </div>
+  </section>
+
+  <!-- 10 R2 CORRELATIONS -->
+  <section class="slide results-corr result-figures" data-background-color="#ffffff">
+    <div class="head"><span class="tag red">Results &middot; 2 of 8</span><h2>Pairwise correlations range from -0.28 to 0.90</h2></div>
+    <div class="body">
+      <p class="lede">Pairwise agreement spans negative, weak, and strong correlations, with the median correlation staying low across the full framework set.</p>
+      <div class="cols">
+        <div class="col">
+          <ul>
+            <li>Pearson runs from <strong>r = -0.28</strong> (BERTScore vs MetaRAG) to <strong>r = 0.90</strong> (TRACe vs ARES), median only <strong>0.21</strong>.</li>
+            <li>The correlation heatmap reveals a block structure rather than a single agreement pattern.</li>
+            <li>RAGChecker correlates in [-0.13, 0.22] with everything; QAFactEval in [-0.28, 0.19].</li>
+          </ul>
+          <div class="takeaway"><b>Takeaway:</b> high agreement is local to some framework pairs, not a property of the full ecosystem.</div>
+        </div>
+        <div class="col fig grow">
+          <img class="zoom" src="slides_assets/figures/fig1_correlation_heatmap.png" alt="Correlation heatmap">
+          <div class="figcap">Pairwise Pearson correlation, 20 frameworks, n = 200.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 R3 BINARY AGREEMENT -->
+  <section class="slide result-figures" data-background-color="#ffffff">
+    <div class="head"><span class="tag red">Results &middot; 3 of 8</span><h2>Binary agreement confirms the pattern</h2></div>
+    <div class="body">
+      <p class="lede">Thresholded verdicts preserve the same reliability concern seen in continuous scores.</p>
+      <div class="cols">
+        <div class="col">
+          <ul>
+            <li>Binarize each score at &tau; = 0.5, then measure Cohen's &kappa;.</li>
+            <li>Within a cluster: agreement up to <strong>&kappa; = 0.69</strong> (ARES vs UniEval), 90% raw agreement.</li>
+            <li>Across clusters with RAGChecker or QAFactEval: <strong>&kappa; &le; 0.001</strong>, near chance.</li>
+          </ul>
+          <div class="takeaway"><b>Takeaway:</b> score disagreement also appears after scores are converted into faithful or unfaithful verdicts.</div>
+        </div>
+        <div class="col fig grow">
+          <img class="zoom" src="slides_assets/figures/fig5b_cohens_kappa.png" alt="Cohen's kappa heatmap">
+          <div class="figcap">Pairwise Cohen's &kappa; at &tau; = 0.5. Block structure mirrors the clusters.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 R4 CLUSTERS -->
+  <section class="slide" data-background-color="#ffffff">
+    <div class="head"><span class="tag red">Results &middot; 4 of 8</span><h2>The frameworks form three empirical clusters</h2></div>
+    <div class="body">
+      <p class="lede">Clustering summarizes the score structure into groups that agree more internally than they agree with one another.</p>
+      <div class="cols">
+        <div class="col">
+          <table class="data">
+            <tr><th>Cluster</th><th>k</th><th>Within r</th></tr>
+            <tr><td><strong>LLM-as-Judge</strong></td><td>4</td><td>0.55</td></tr>
+            <tr><td><strong>Mixed Methods</strong></td><td>11</td><td>0.63</td></tr>
+            <tr><td><strong>Outlier</strong></td><td>5</td><td>0.01</td></tr>
+            <tr><td>Between clusters</td><td>n/a</td><td>0.10</td></tr>
+          </table>
+        </div>
+        <div class="col">
+          <div class="proof blue">
+            <div class="h">Normalization check</div>
+            <div class="b">Raw, min-max, z-score, and rank transformations return identical cluster assignments. Pairwise ARI is 1.0.</div>
+          </div>
+          <div class="proof red" style="margin-top:14px;">
+            <div class="h">Cluster count check</div>
+            <div class="b">The gap statistic peaks at k = 3. Bootstrap co-assignment is at least 0.75 within the LLM-as-judge and mixed-methods clusters.</div>
+          </div>
+          <div class="proof" style="margin-top:14px;">
+            <div class="h">Outlier cluster</div>
+            <div class="b">BERTScore, GaRAGe, HALT-RAG, QAFactEval, and RAGChecker form the low agreement group.</div>
+          </div>
+        </div>
+      </div>
+      <div class="takeaway"><b>Takeaway:</b> the three-cluster pattern is stable across score transformations reported in the paper.</div>
+    </div>
+  </section>
+
+  <!-- 13 R5 DOMAIN -->
+  <section class="slide" data-background-color="#ffffff">
+    <div class="head"><span class="tag red">Results &middot; 5 of 8</span><h2>Domain difficulty depends on the method</h2></div>
+    <div class="body">
+      <p class="lede">Domain effects are not uniform across frameworks, so a score shift across domains must be read together with the evaluator that produced it.</p>
+      <ul style="flex:0 0 auto;">
+        <li><span class="hl-red">Largest reported domain effects:</span> KG-RAG (&eta;&sup2; = 0.225), MetaRAG (0.222), TRACe (0.198), ARES (0.190). &nbsp; <span class="hl-blue">Smallest among LLM-as-judge:</span> G-Eval and FaithJudge (0.039), RAGAS (0.058).</li>
+      </ul>
+      <div class="figrow">
+        <div class="figcell"><img class="zoom" src="slides_assets/figures/fig2_domain_comparison.png" alt="Domain comparison">
+          <div class="figcap">Mean score by domain, all 20 frameworks.</div></div>
+        <div class="figcell"><img class="zoom" src="slides_assets/figures/fig6_domain_boxplots.png" alt="Domain boxplots">
+          <div class="figcap">Score distributions by domain, six representative frameworks.</div></div>
+      </div>
+      <div class="takeaway"><b>Takeaway:</b> Finance scores lower for most frameworks, while the size of the domain effect depends on the framework.</div>
+    </div>
+  </section>
+
+  <!-- 14 R6 HUMAN -->
+  <section class="slide" data-background-color="#ffffff">
+    <div class="head"><span class="tag red">Results &middot; 6 of 8</span><h2>The human subset favors the LLM-as-judge cluster</h2></div>
+    <div class="body">
+      <p class="lede">The human validation subset provides a separate reference point for the cluster pattern, while its size limits the strength of the conclusion.</p>
+      <div class="cols">
+        <div class="col">
+          <ul>
+            <li><strong>LLM-as-Judge:</strong> mean r = 0.51. FaithJudge 0.60, G-Eval 0.56, DeepEval 0.45, RAGAS 0.44. All significant.</li>
+            <li><strong>Mixed Methods:</strong> mean r = 0.19. Only SIRG significant.</li>
+            <li><strong>Outlier:</strong> mean r = 0.05. Near zero.</li>
+          </ul>
+          <div class="takeaway"><b>Takeaway:</b> this is directional evidence from a 50-sample human validation subset.</div>
+        </div>
+        <div class="col">
+          <table class="data">
+            <tr><th>Cluster</th><th>Mean r</th><th>Highest reported r</th></tr>
+            <tr><td>LLM-as-Judge</td><td>0.51</td><td>FaithJudge 0.596</td></tr>
+            <tr><td>Mixed Methods</td><td>0.19</td><td>SIRG 0.361</td></tr>
+            <tr><td>Outlier</td><td>0.05</td><td>RAGChecker 0.243</td></tr>
+          </table>
+          <div class="proof blue" style="margin-top:14px;">
+            <div class="h">Human validation subset</div>
+            <div class="b">Pearson correlations are computed against binary human annotations for n = 50 RAGBench samples.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 15 R7 CONSENSUS -->
+  <section class="slide" data-background-color="#ffffff">
+    <div class="head"><span class="tag red">Results &middot; 7 of 8</span><h2>Cross-cluster consensus is usually contested</h2></div>
+    <div class="body">
+      <p class="lede">The consensus protocol asks how often representative frameworks from the three clusters produce the same binary conclusion.</p>
+      <ul style="flex:0 0 auto;">
+        <li>Representatives are selected by highest mean within-cluster correlation: LRP4RAG, FaithJudge, QAFactEval.</li>
+        <li>A sample is faithful only when all three representatives score above &tau; = 0.5, and unfaithful only when all three score below &tau;.</li>
+      </ul>
+      <div class="verdicts">
+        <div class="verdict contested">
+          <div class="n">92.5%</div>
+          <div class="h">Contested</div>
+          <div class="b">185 of 200 samples do not receive a unanimous binary verdict.</div>
+        </div>
+        <div class="verdict">
+          <div class="n">6.0%</div>
+          <div class="h">Faithful</div>
+          <div class="b">12 unanimous faithful verdicts.</div>
+        </div>
+        <div class="verdict">
+          <div class="n">1.5%</div>
+          <div class="h">Unfaithful</div>
+          <div class="b">3 unanimous unfaithful verdicts.</div>
+        </div>
+      </div>
+      <div class="takeaway"><b>Takeaway:</b> the paper's consensus protocol quantifies how rarely the three clusters converge on a verdict.</div>
+    </div>
+  </section>
+
+  <!-- 16 R8 SCATTER CASE -->
+  <section class="slide" data-background-color="#ffffff">
+    <div class="head"><span class="tag red">Results &middot; 8 of 8</span><h2>One framework, seen against the rest</h2></div>
+    <div class="body">
+      <p class="lede">The FaithJudge scatter view makes the agreement gap visible at sample level across judge peers, mixed methods, and outliers.</p>
+      <div class="cols">
+        <div class="col">
+          <ul>
+            <li>FaithJudge has the highest human correlation (r = 0.60), so we plot it against the others.</li>
+            <li>Tight diagonal with LLM-judge peers: RAGAS 0.69, G-Eval 0.62, DeepEval 0.50.</li>
+            <li>Agreement weakens for mixed methods (LRP4RAG 0.17) and breaks for outliers (RAGChecker -0.03, QAFactEval -0.06).</li>
+          </ul>
+          <div class="takeaway"><b>Takeaway:</b> the scatter plots make the cluster differences visible at the sample level.</div>
+        </div>
+        <div class="col fig grow">
+          <img class="zoom" src="slides_assets/figures/fig4_scatter_FaithJudge.png" alt="FaithJudge scatter">
+          <div class="figcap">FaithJudge (x) vs twelve frameworks (y), colored by domain.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 17 DISCUSSION 1 -->
+  <section class="slide" data-background-color="#ffffff">
+    <div class="head"><span class="tag blue">Discussion</span><h2>One faithfulness metric is insufficient evidence</h2></div>
+    <div class="body">
+      <p class="lede">The results change how a reported score should be read in papers, comparisons, and optimization loops.</p>
+      <div class="card red"><div class="h">Single-metric reporting</div><div class="b">On identical samples, mean scores range from 0.923 for G-Eval to 0.063 for RAGChecker.</div></div>
+      <div class="card navy"><div class="h">Cross-study comparison</div><div class="b">Observed score differences may reflect framework choice rather than system quality.</div></div>
+      <div class="card"><div class="h">Evaluation-driven optimization</div><div class="b">Low between-cluster agreement means improvement on one metric may not carry to another.</div></div>
+      <div class="takeaway"><b>Bottom line:</b> framework identity belongs next to every faithfulness claim.</div>
+    </div>
+  </section>
+
+  <!-- 18 DISCUSSION 2 -->
+  <section class="slide" data-background-color="#ffffff">
+    <div class="head"><span class="tag blue">Discussion</span><h2>Choose the evaluator by the question it can answer</h2></div>
+    <div class="body">
+      <p class="lede">The paper treats disagreement as a reason to choose evaluators by evidence type and to report multiple perspectives when needed.</p>
+      <div class="cols">
+        <div class="col">
+          <h3 class="hl-red">Why disagreement appears</h3>
+          <p class="small">The clusters treat different evidence as faithfulness: holistic judgment, claim-level entailment, semantic overlap, or context reliance signals.</p>
+        </div>
+        <div class="col">
+          <h3 class="hl-blue">Paper guidelines</h3>
+          <ul>
+            <li><strong>General scoring:</strong> G-Eval or FaithJudge (lowest domain sensitivity).</li>
+            <li><strong>Claim-level diagnosis:</strong> RAGChecker or HALT-RAG (deterministic, per-claim).</li>
+            <li><strong>Process-level:</strong> ReDeEP or LRP4RAG.</li>
+            <li><strong>Multi-perspective reporting:</strong> one method from each cluster.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="takeaway"><b>Practice:</b> cross-cluster agreement is a stronger signal of quality than agreement within one family.</div>
+    </div>
+  </section>
+
+  <!-- 19 DISCUSSION 3 -->
+  <section class="slide" data-background-color="#ffffff">
+    <div class="head"><span class="tag blue">Discussion</span><h2>Limitations point directly to the next reliability study</h2></div>
+    <div class="body">
+      <p class="lede">The limitations bound this study and identify the next checks needed before reliability claims become broader.</p>
+      <div class="cols">
+        <div class="col">
+          <h3 class="hl-red">Limitations</h3>
+          <ul>
+            <li>200 samples may miss rare failure modes.</li>
+            <li>RAGBench draws from specific benchmarks.</li>
+            <li>LLM-judge results depend on the backbone (DeepSeek-V3).</li>
+            <li>Human subset (n = 50) is directional, not definitive.</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3 class="hl-blue">Future work</h3>
+          <ul>
+            <li>Taxonomies that separate the sub-constructs bundled under faithfulness.</li>
+            <li>Meta-analytic reporting standards for new frameworks.</li>
+            <li>Domain-adapted calibration.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="banner navy">The paper concludes that faithfulness is not a single construct as currently measured.</div>
+    </div>
+  </section>
+
+  <!-- 20 REFERENCES -->
+  <section class="slide" data-background-color="#ffffff">
+    <div class="head"><span class="tag navy">References</span><h2>Selected references</h2></div>
+    <div class="body">
+      <p class="lede">These references cover the benchmark, representative faithfulness frameworks, and the statistical tools used in the reliability analysis.</p>
+      <div class="cols">
+        <div class="col"><ul>
+          <li>Friel et al. RAGBench. 2024.</li>
+          <li>Es et al. RAGAS. EACL 2024.</li>
+          <li>Liu et al. G-Eval. EMNLP 2023.</li>
+          <li>Tamber et al. FaithJudge. EMNLP 2025.</li>
+          <li>Ru et al. RAGChecker. NeurIPS 2024.</li>
+          <li>Saad-Falcon et al. ARES. NAACL 2024.</li>
+        </ul></div>
+        <div class="col"><ul>
+          <li>Zhang et al. BERTScore. ICLR 2020.</li>
+          <li>Sun et al. ReDeEP. ICLR 2025.</li>
+          <li>Cochran. Combination of estimates. 1954.</li>
+          <li>Higgins et al. Measuring inconsistency. BMJ 2003.</li>
+          <li>Tibshirani et al. Gap statistic. 2001.</li>
+          <li class="muted">Full list in the paper and repository.</li>
+        </ul></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 21 THANK YOU -->
+  <section data-background-color="#002147">
+    <div class="center-slide closing-slide" style="color:#fff;">
+      <h1 style="color:#fff; font-size:2.0em;">Thank you</h1>
+      <div class="rule" style="background:var(--red);"></div>
+      <p class="closing-copy">This study asks whether faithfulness frameworks give compatible measurements when they evaluate the same RAG inputs.</p>
+      <p class="closing-contact">Asif Ahmed Neloy &nbsp;&middot;&nbsp; <a href="mailto:asif.neloy@ubc.ca" style="color:#9ec5ff;">asif.neloy@ubc.ca</a></p>
+      <p class="closing-role">Senior AI Engineer, Delta Controls &nbsp;&middot;&nbsp; Adjunct Professor, University of British Columbia</p>
+      <p class="closing-role">MD Nazmul Islam &nbsp;&middot;&nbsp; Instructor, Keyano College</p>
+      <p class="closing-link">
+        <a href="https://github.com/aaneloy/A-Meta-Analysis-of-Evaluation-Framework-Reliability-and-Cross-Domain-Generalization" style="color:#9ec5ff;" target="_blank">
+          github.com/aaneloy/A-Meta-Analysis-of-Evaluation-Framework-Reliability...</a>
+      </p>
+    </div>
+  </section>
+
+</div></div>
+
+<button id="navprev" class="navbtn" aria-label="Previous slide">&#8249;</button>
+<button id="navnext" class="navbtn" aria-label="Next slide">&#8250;</button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.6.1/reveal.min.js"></script>
+<script>
+  Reveal.initialize({
+    hash:true, controls:true, controlsTutorial:false, progress:true,
+    center:false, slideNumber:'c/t', transition:'slide',
+    width:'100%', height:'100%', margin:0, keyboard:true
+  });
+  document.getElementById('navprev').addEventListener('click', ()=>Reveal.prev());
+  document.getElementById('navnext').addEventListener('click', ()=>Reveal.next());
+</script>
+</body>
+</html>

@@ -107,3 +107,7 @@ secrets/
 # Logs
 *.log
 logs/
+
+# Presentation: paper PDF and docs markdown excluded
+docs/*.pdf
+docs/*.md
