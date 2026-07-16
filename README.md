@@ -7,7 +7,7 @@
 
 This repository contains the code and data for our meta-analysis comparing **20 RAG (Retrieval-Augmented Generation) evaluation frameworks** across **3 domains** (General Knowledge, Finance, Biomedicine). We evaluate inter-framework agreement, cross-domain generalization, and human correlation to answer critical questions about metric reliability.
 
-**Paper**: Accepted at the 39th Canadian Conference on Artificial Intelligence (Canadian AI 2026).
+**Paper**: Published in *Proceedings of Machine Learning Research* (PMLR), Vol. 318, pp. 796-811, The 39th Canadian Conference on Artificial Intelligence (Canadian AI 2026). [[Proceedings page](https://proceedings.mlr.press/v318/neloy26a.html)] [[PDF](https://raw.githubusercontent.com/mlresearch/v318/main/assets/neloy26a/neloy26a.pdf)] [[BibTeX](pmlr-v318-neloy26a.bib)]
 
 **Authors**: Asif Ahmed Neloy (University of British Columbia) and MD Nazmul Islam (Keyano College).
 
@@ -642,15 +642,23 @@ Based on our analysis, we provide framework selection guidance:
 If you use this code or findings in your research, please cite:
 
 ```bibtex
-@inproceedings{neloy2026ragmetrics,
-  title={A Meta-Analysis of Evaluation Framework Reliability and Cross-Domain Generalization},
-  author={Neloy, Asif Ahmed and Islam, MD Nazmul},
-  booktitle={Proceedings of the 39th Canadian Conference on Artificial Intelligence},
-  year={2026},
-  series={Proceedings of Machine Learning Research},
-  publisher={PMLR}
+@InProceedings{pmlr-v318-neloy26a,
+  title     = {A Meta-Analysis of Evaluation Framework Reliability and Cross-Domain Generalization},
+  author    = {Neloy, Asif Ahmed and Islam, Md Nazmul},
+  booktitle = {Proceedings of the The 39th Canadian Conference on Artificial Intelligence},
+  pages     = {796--811},
+  year      = {2026},
+  editor    = {Bouzar-Benlabiod, Lydia and Leung, Carson},
+  volume    = {318},
+  series    = {Proceedings of Machine Learning Research},
+  month     = {25--29 May},
+  publisher = {PMLR},
+  pdf       = {https://raw.githubusercontent.com/mlresearch/v318/main/assets/neloy26a/neloy26a.pdf},
+  url       = {https://proceedings.mlr.press/v318/neloy26a.html}
 }
 ```
+
+The official BibTeX is also available as [`pmlr-v318-neloy26a.bib`](pmlr-v318-neloy26a.bib).
 
 ## License
 
